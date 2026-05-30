@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel | AI & Cyber Threat Detector</title>
+    <meta name="description" content="Advanced AI-powered detection for deepfakes, phishing websites, and text plagiarism.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Overlay -->
+        <div id="auth-overlay" class="overlay">
+            <div class="glass-panel auth-panel">
+                <h2>Access Sentinel</h2>
+                <p>Enter your credentials to access the detection suite.</p>
+                <form id="login-form">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit" class="btn primary-btn">Login</button>
+                    <div id="login-error" class="error-msg"></div>
+                </form>
+            </div>
+        </div>
+
+        <header>
+            <div class="logo">Sentinel<span>.</span></div>
+            <nav>
+                <button class="nav-btn active" data-target="image-detector">Deepfake Image</button>
+                <button class="nav-btn" data-target="website-detector">Phishing Website</button>
+                <button class="nav-btn" data-target="text-detector">Text / Plagiarism</button>
+                <button class="nav-btn" data-target="system-status">System Status</button>
+            </nav>
+            <div class="user-controls">
+                <button id="logout-btn" class="btn secondary-btn" style="display:none;">Logout</button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Image Deepfake Detector -->
+            <section id="image-detector" class="tab-content active">
+                <div class="glass-panel main-panel">
+                    <h2>Image Deepfake Detector</h2>
+                    <p class="subtitle">Upload an image to detect AI manipulation.</p>
+                    
+                    <div class="upload-area" id="image-upload-area">
+                        <input type="file" id="image-input" accept="image/png, image/jpeg, image/webp" hidden>
+                        <label for="image-input" class="upload-label">
+                            <div class="upload-icon">📸</div>
+                            <span>Click or drag image here to upload</span>
+                        </label>
+                    </div>
+                    <div id="image-preview-container" style="display:none;">
+                        <img id="image-preview" src="" alt="Preview">
+                        <button id="analyze-image-btn" class="btn primary-btn">Analyze Image</button>
+                    </div>
+                    
+                    <div id="image-result" class="result-container" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Website Phishing Detector -->
+            <section id="website-detector" class="tab-content">
+                <div class="glass-panel main-panel">
+                    <h2>Phishing Website Detector</h2>
+                    <p class="subtitle">Enter a URL to analyze it for phishing indicators.</p>
+                    
+                    <div class="input-group">
+                        <input type="url" id="url-input" placeholder="https://example.com" required>
+                        <button id="analyze-url-btn" class="btn primary-btn">Analyze URL</button>
+                    </div>
+                    
+                    <div id="website-result" class="result-container" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- Text Plagiarism & AI Detector -->
+            <section id="text-detector" class="tab-content">
+                <div class="glass-panel main-panel">
+                    <h2>Text Analysis</h2>
+                    <p class="subtitle">Paste text or upload a document to check for plagiarism and AI generation.</p>
+                    
+                    <div class="tabs-inner">
+                        <button class="inner-tab active" data-target="text-paste">Paste Text</button>
+                        <button class="inner-tab" data-target="doc-upload">Upload Document</button>
+                    </div>
+                    
+                    <div id="text-paste" class="inner-content active">
+                        <textarea id="text-input" placeholder="Paste your text here..." rows="8"></textarea>
+                        <button id="analyze-text-btn" class="btn primary-btn mt-4">Analyze Text</button>
+                    </div>
+                    
+                    <div id="doc-upload" class="inner-content" style="display:none;">
+                        <div class="upload-area" id="doc-upload-area">
+                            <input type="file" id="doc-input" accept=".pdf, .docx, .txt" hidden>
+                            <label for="doc-input" class="upload-label">
+                                <div class="upload-icon">📄</div>
+                                <span id="doc-file-name">Click or drag document here to upload (.pdf, .docx, .txt)</span>
+                            </label>
+                        </div>
+                        <button id="analyze-doc-btn" class="btn primary-btn mt-4" style="display:none;">Analyze Document</button>
+                    </div>
+                    
+                    <div id="text-result" class="result-container" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- System Status -->
+            <section id="system-status" class="tab-content">
+                <div class="glass-panel main-panel">
+                    <h2>System Health & Models</h2>
+                    <p class="subtitle">Current operational status of Sentinel detectors.</p>
+                    
+                    <button id="refresh-status-btn" class="btn secondary-btn mb-4">Refresh Status</button>
+                    <div id="status-container" class="status-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="overlay" style="display:none;">
+            <div class="spinner"></div>
+            <p>Analyzing...</p>
+        </div>
+    </div>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

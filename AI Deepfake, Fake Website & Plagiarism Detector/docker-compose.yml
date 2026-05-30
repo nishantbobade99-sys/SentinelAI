@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - REQUIRE_AUTH=true
+      - SECRET_KEY=production-secret-key-change-me
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+    volumes:
+      - ./weights:/app/weights
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped

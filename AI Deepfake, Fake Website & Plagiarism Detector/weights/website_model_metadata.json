@@ -1,0 +1,35 @@
+{
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1_score": 1.0,
+    "confusion_matrix": [
+        [
+            1,
+            0
+        ],
+        [
+            0,
+            3
+        ]
+    ],
+    "model_type": "RandomForestClassifier",
+    "features_used": [
+        "url_length",
+        "domain_length",
+        "number_of_dots",
+        "number_of_hyphens",
+        "number_of_digits",
+        "has_https",
+        "has_ip_address",
+        "has_at_symbol",
+        "suspicious_keywords_count",
+        "brand_impersonation_score",
+        "tld_risk",
+        "subdomain_depth",
+        "entropy_score",
+        "path_length",
+        "query_length",
+        "punycode_detected"
+    ]
+}
